@@ -5,7 +5,7 @@ class Api::V1::AuthController < ApplicationController
     if user && user.authenticate(params[:password])
       render json: { token: issue_token({ id: user.id }) }
     else
-      render json: { error: "Auth Failed" }, status: 401
+      render json: { error: "Auth failed, invalid email or password." }, status: 401
     end
   end
 
