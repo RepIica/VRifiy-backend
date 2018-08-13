@@ -10,7 +10,19 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def create
-    project = Project.create(projectname: params[:projectname], password: params[:password])
+    project = Project.create(name: params[:name], filepath: params[:filepath], user_id: params[:userId])
+    if project.valid?
+      render json: { token: issue_token({ id: project.id }) }
+    else
+      render json: { error: "Project not created" }
+    end
+  end
+
+  def update
+    project = Project.create(name: params[:name], filepath: params[:filepath], user_id: params[:userId])
+
+    project = Project.find_by(name: 'David')
+    project.update(name: 'Dave')
     if project.valid?
       render json: { token: issue_token({ id: project.id }) }
     else

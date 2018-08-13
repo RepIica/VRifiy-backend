@@ -11,7 +11,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    user = User.create(username: params[:username], password: params[:password])
+    user = User.create(name: params[:name], password: params[:password])
     if user.valid?
       render json: { token: issue_token({ id: user.id }) }
     else
