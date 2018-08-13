@@ -10,6 +10,9 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def create
+    file = params[:fileContent]
+    newFile = File.open("#{params[:name]}.txt","w")
+    newFile.write(file)
     project = Project.create(name: params[:name], filepath: params[:filepath], user_id: params[:userId])
     if project.valid?
       render json: project
