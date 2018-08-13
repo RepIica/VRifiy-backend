@@ -1,0 +1,3 @@
+some things on a line
+some more things on a line
+document.documentElement.innerHTML;
