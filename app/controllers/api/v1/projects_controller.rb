@@ -17,10 +17,10 @@ class Api::V1::ProjectsController < ApplicationController
     dir = "../VRify-frontend/public/#{user.name}"
     # dir = "../../../../../VRify-frontend/public/#{user.name}"
     Dir.mkdir dir unless File.exist? dir
-
     file = params[:fileContent]
     newFile = File.open(File.expand_path("#{dir}/#{params[:name]}.html"),"w")
     newFile.write(file)
+    newFile.close
     project = Project.create(name: params[:name], filepath: "./#{user.name}/#{params[:name]}.html", user_id: params[:userId])
     if project.valid?
       render json: project
