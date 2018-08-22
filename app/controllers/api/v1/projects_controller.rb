@@ -1,15 +1,14 @@
 class Api::V1::ProjectsController < ApplicationController
+
   def index
-    # @projects = Project.all
-    # render json: @projects
-    @projects = Project.all.where(user_id: params[:userId]).map { |e| e.name  }
+    user = User.find(params[:userId])
+    @projects = user.projects
     render json: @projects
   end
 
   def show
-    user = User.all.find(params[:userId])
-    @projects = user.projects.map { |e| e.name  }
-    render json: @projects
+    @project = Project.find(params[:id])
+    render json: @project
   end
 
   def create
