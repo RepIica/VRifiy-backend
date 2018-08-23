@@ -19,9 +19,8 @@ class Api::V1::ProjectsController < ApplicationController
     body = params[:fileContent]
 
     newFile = File.open(File.expand_path("#{dir}/#{params[:name]}.html"),"w")
-      file.write(body)
-      file.close
-    end
+    newFile.write(body)
+    newFile.close
 
     project = Project.create(name: params[:name], filepath: "./#{user.name}/#{params[:name]}.html", user_id: params[:userId])
     if project.valid?
