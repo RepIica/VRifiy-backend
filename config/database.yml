@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: VRifiy-backend_production
-  username: VRifiy-backend
+  database: vrify_production
+  username: deploy
   password: <%= ENV['VRIFIY-BACKEND_DATABASE_PASSWORD'] %>
